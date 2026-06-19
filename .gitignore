@@ -1,0 +1,78 @@
+# ─── Variables d'environnement ──────────────────────────────
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+*.env
+
+# ─── Dépendances ────────────────────────────────────────────
+node_modules/
+**/node_modules/
+.pnpm-store/
+.pnpm-debug.log*
+
+# ─── Builds ─────────────────────────────────────────────────
+dist/
+**/dist/
+build/
+**/build/
+out/
+**/out/
+.next/
+**/.next/
+
+# ─── TypeScript ─────────────────────────────────────────────
+*.tsbuildinfo
+**/*.tsbuildinfo
+
+# ─── Logs ───────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ─── Secrets / credentials ──────────────────────────────────
+*.pem
+*.key
+*.cert
+secrets/
+credentials/
+tokens/
+
+# ─── Base de données locale ──────────────────────────────────
+*.sqlite
+*.sqlite3
+*.db
+postgres_data/
+data/
+
+# ─── Extension Chrome ────────────────────────────────────────
+apps/extension/*.zip
+apps/extension/*.crx
+
+# ─── Tests & coverage ───────────────────────────────────────
+coverage/
+**/coverage/
+.nyc_output/
+
+# ─── Cache ──────────────────────────────────────────────────
+.cache/
+.turbo/
+.vercel/
+.eslintcache
+
+# ─── Supabase local ─────────────────────────────────────────
+.supabase/
+supabase/.branches/
+supabase/.temp/
+
+# ─── IDE & système ──────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
