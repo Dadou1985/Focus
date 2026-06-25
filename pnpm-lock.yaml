@@ -14,6 +14,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@mode/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@mode/shared':
         specifier: workspace:*
         version: link:../../packages/shared

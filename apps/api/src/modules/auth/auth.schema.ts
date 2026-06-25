@@ -1,4 +1,5 @@
-// Interfaces représentant les lignes en base — miroir du schéma SQL
+// Types DB row — représentation brute Supabase (snake_case, colonnes techniques)
+// Ne jamais exposer ces types à l'extérieur du module
 export interface UserRow {
   id: string
   email: string
@@ -6,6 +7,7 @@ export interface UserRow {
   avatar_url: string | null
   timezone: string
   created_at: string
+  updated_at: string
 }
 
 export interface OAuthTokenRow {
@@ -30,11 +32,11 @@ export interface ModeRow {
   slack_emoji: string | null
   dnd_enabled: boolean
   gmail_signature: string | null
+  created_at: string
+  updated_at: string
 }
 
-// Inputs pour les opérations CRUD
+// Inputs pour les opérations Supabase — restent locaux au module
 export type UpsertUserInput = Pick<UserRow, 'email' | 'name' | 'avatar_url'>
-
 export type UpsertOAuthTokenInput = Omit<OAuthTokenRow, 'id'>
-
-export type UpsertModeInput = Omit<ModeRow, 'id'>
+export type UpsertModeInput = Omit<ModeRow, 'id' | 'created_at' | 'updated_at'>
