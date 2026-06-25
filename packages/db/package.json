@@ -1,5 +1,5 @@
 {
-  "name": "@mode/shared",
+  "name": "@mode/db",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
@@ -12,12 +12,12 @@
     }
   },
   "scripts": {
-    "dev": "tsc --watch",
     "build": "tsc",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "zod": "^3.23.0"
+    "@mode/config": "workspace:*",
+    "@supabase/supabase-js": "^2.45.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

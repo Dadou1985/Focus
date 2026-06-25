@@ -1,4 +1,4 @@
-export * from './types'
+export * from './schemas/index.js'
 
 export const MODE_COLORS: Record<string, string> = {
   focus: '#6366f1',
