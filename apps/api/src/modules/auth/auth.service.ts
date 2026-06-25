@@ -1,18 +1,18 @@
 import { google } from 'googleapis'
 import { createOAuthClient, getGoogleAuthUrl } from '../../lib/google.js'
 import { signToken } from '../../lib/jwt.js'
-import { DEFAULT_MODES } from '@mode/shared'
+import { DEFAULT_MODES, type User } from '@mode/shared'
 import {
   upsertUser,
   upsertOAuthToken,
   upsertModes,
   findUserById,
 } from './auth.repository.js'
-import type { UserRow, UpsertModeInput } from './auth.schema.js'
+import type { UpsertModeInput } from './auth.schema.js'
 
 export interface GoogleCallbackResult {
   token: string
-  user: UserRow
+  user: User
 }
 
 export function getAuthorizationUrl(): string {
@@ -31,13 +31,13 @@ export async function handleGoogleCallback(code: string): Promise<GoogleCallback
     throw new Error('Profil Google incomplet : email ou nom manquant')
   }
 
+  // Le repository retourne un User DTO — le service ne voit jamais UserRow
   const user = await upsertUser({
     email: profile.email,
     name: profile.name,
     avatar_url: profile.picture ?? null,
   })
 
-  // Initialise les modes par défaut à la première connexion (ignoreDuplicates = true)
   const defaultModes: UpsertModeInput[] = DEFAULT_MODES.map((m) => ({
     user_id: user.id,
     type: m.type,
@@ -66,6 +66,6 @@ export async function handleGoogleCallback(code: string): Promise<GoogleCallback
   return { token, user }
 }
 
-export async function getCurrentUser(userId: string): Promise<UserRow | null> {
+export async function getCurrentUser(userId: string): Promise<User | null> {
   return findUserById(userId)
 }
