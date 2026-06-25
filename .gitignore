@@ -64,6 +64,9 @@ coverage/
 .vercel/
 .eslintcache
 
+# ─── Graphify (graphe de code généré) ────────────────────────
+graphify-out/
+
 # ─── Supabase local ─────────────────────────────────────────
 .supabase/
 supabase/.branches/
