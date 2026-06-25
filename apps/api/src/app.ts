@@ -1,5 +1,6 @@
 import express, { type Express } from 'express'
 import authRouter from './modules/auth/auth.routes.js'
+import { errorHandler } from './middleware/error-handler.js'
 
 export function createApp(): Express {
   const app: Express = express()
@@ -12,6 +13,9 @@ export function createApp(): Express {
   app.use('/auth', authRouter)
   // app.use('/modes', modesRouter)     // SCRUM-94
   // app.use('/planning', planningRouter) // SCRUM-99
+
+  // Doit être enregistré en dernier — intercepte tous les next(err)
+  app.use(errorHandler)
 
   return app
 }
