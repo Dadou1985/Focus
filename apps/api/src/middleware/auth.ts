@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from 'express'
 import { parse as parseCookies } from 'cookie'
 import { verifyToken } from '../lib/jwt.js'
+import { Errors } from '../lib/errors.js'
 
 export function requireAuth(req: Request, res: Response, next: NextFunction): void {
   const cookies = parseCookies(req.headers.cookie ?? '')
@@ -11,15 +12,12 @@ export function requireAuth(req: Request, res: Response, next: NextFunction): vo
 
   const token = tokenFromCookie ?? tokenFromHeader
 
-  if (!token) {
-    res.status(401).json({ error: 'Non authentifié' })
-    return
-  }
+  if (!token) return void next(Errors.unauthorized())
 
   try {
     req.user = verifyToken(token)
     next()
   } catch {
-    res.status(401).json({ error: 'Token invalide ou expiré' })
+    next(Errors.unauthorized('Token invalide ou expiré'))
   }
 }
