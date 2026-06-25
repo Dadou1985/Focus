@@ -16,7 +16,11 @@
     "build": "tsc",
     "type-check": "tsc --noEmit"
   },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
   "devDependencies": {
+    "@types/node": "^20.14.0",
     "typescript": "^5.4.0"
   }
 }
